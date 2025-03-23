@@ -141,13 +141,21 @@ body {
 }
 
 .menu-toggle {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-20%);
+    z-index: 1100;
     font-size: 28px;
-    cursor: pointer;
     color: #fff;
+    cursor: pointer;
+}
+.menu-toggle i {
     transition: transform 0.3s ease-in-out;
 }
-
 
 
 /* ===== HERO SECTION ===== */
