@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.querySelector(".menu-toggle");
     const navLinks = document.querySelector(".nav-links");
     const navLinksItems = document.querySelectorAll(".nav-links a");
+    const heroTitle = document.querySelector(".hero-title");
+    const sections = document.querySelectorAll(".section");
+    const inputGroups = document.querySelectorAll(".input-group");
+    const btnSend = document.querySelector(".btn-send");
 
     // Effet d'ombre en scroll
     window.addEventListener("scroll", function () {
@@ -38,29 +42,101 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-    
 
     // Déclencher l'animation de typing
-    const heroTitle = document.querySelector(".hero-title");
     heroTitle.style.width = heroTitle.scrollWidth + "px";
-    
-    // Effet visuel sympa lors du submit formulaire
-document.addEventListener("DOMContentLoaded", () => {
-    const contactForm = document.querySelector(".contact-form form");
 
-    contactForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        const btn = document.querySelector(".btn-send");
-        btn.textContent = "Envoyé ! 🎉";
-        btn.style.background = "#4caf50";
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const section = entry.target;
+            const revealItems = section.querySelectorAll(".reveal-item");
+
+            if (entry.isIntersecting) {
+                section.classList.add("reveal-active");
+
+                revealItems.forEach((el, index) => {
+                    el.style.animation = "none"; // reset
+                    el.offsetHeight; // force reflow
+                    el.style.animation = fancyReveal 0.8s ease forwards;
+                    el.style.animationDelay = ${index * 0.2}s;
+                });
+
+            } else {
+                section.classList.remove("reveal-active");
+
+                revealItems.forEach(el => {
+                    el.style.animation = "none";
+                    el.style.opacity = 0;
+                    el.style.transform = "translateY(40px) rotateX(10deg) scale(0.95)";
+                });
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // Apparition champ par champ au scroll
+    const inputObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("reveal");
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    inputGroups.forEach(inputGroup => {
+        inputObserver.observe(inputGroup);
+    });
+
+    // Effet ripple sur le bouton d’envoi
+    btnSend.addEventListener("click", function (e) {
+        const rect = btnSend.getBoundingClientRect();
+        const ripple = document.createElement("span");
+        ripple.classList.add("ripple");
+        ripple.style.left = ${e.clientX - rect.left}px;
+        ripple.style.top = ${e.clientY - rect.top}px;
+        btnSend.appendChild(ripple);
 
         setTimeout(() => {
-            btn.textContent = "Envoyer";
-            btn.style.background = "linear-gradient(135deg, #915eff, #6a3fcf)";
-            contactForm.reset();
-        }, 2500);
+            ripple.remove();
+        }, 600);
     });
+    const form = document.getElementById("contact-form");
+const message = document.getElementById("form-message");
+
+form.addEventListener("submit", async function (e) {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            form.reset();
+            message.style.display = "block";
+        } else {
+            message.style.display = "block";
+            message.textContent = "❌ Une erreur s’est produite. Veuillez réessayer.";
+            message.style.color = "#ff4444";
+        }
+    } catch (error) {
+        message.style.display = "block";
+        message.textContent = "❌ Erreur réseau. Vérifiez votre connexion.";
+        message.style.color = "#ff4444";
+    }
 });
 
 });
