@@ -148,9 +148,7 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-.menu-toggle.active i {
-    transform: rotate(90deg);
-}
+
 
 /* ===== HERO SECTION ===== */
 .hero {
@@ -697,5 +695,26 @@ body {
     .input-group textarea {
         font-size: 14px;
         padding: 12px 12px 12px 40px;
+    }
+}
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 22px;
+        right: 25px;
+        z-index: 1100;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 16px 20px;
+    }
+
+    .nav-links {
+        margin-top: 60px; /* pour laisser la place au menu burger */
     }
 }
