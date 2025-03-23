@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 revealItems.forEach((el, index) => {
                     el.style.animation = "none"; // reset
                     el.offsetHeight; // force reflow
-                    el.style.animation = fancyReveal 0.8s ease forwards;
-                    el.style.animationDelay = ${index * 0.2}s;
+                    el.style.animation = "fancyReveal 0.8s ease forwards";
+                    el.style.animationDelay = `${index * 0.2}s`;
                 });
 
             } else {
@@ -99,8 +99,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const rect = btnSend.getBoundingClientRect();
         const ripple = document.createElement("span");
         ripple.classList.add("ripple");
-        ripple.style.left = ${e.clientX - rect.left}px;
-        ripple.style.top = ${e.clientY - rect.top}px;
+        ripple.style.left = (e.clientX - rect.left) + "px";
+        ripple.style.top = (e.clientY - rect.top) + "px";
         btnSend.appendChild(ripple);
 
         setTimeout(() => {
