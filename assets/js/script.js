@@ -7,14 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll(".section");
     const inputGroups = document.querySelectorAll(".input-group");
     const btnSend = document.querySelector(".btn-send");
+    const form = document.getElementById("contact-form");
+    const message = document.getElementById("form-message");
+    const skillCards = document.querySelectorAll(".skill-card");
 
-    // Effet d'ombre en scroll
+    // Ajoute une ombre à la barre de navigation lors du défilement
     window.addEventListener("scroll", function () {
-        if (window.scrollY > 50) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
+        navbar.classList.toggle("scrolled", window.scrollY > 50);
     });
 
     // Toggle du menu mobile
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         menuToggle.classList.toggle("active");
     });
 
-    // Défilement fluide au clic sur les liens du menu
+    // Défilement fluide vers les sections ciblées
     navLinksItems.forEach(link => {
         link.addEventListener("click", function (e) {
             e.preventDefault();
@@ -32,20 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (targetSection) {
                 window.scrollTo({
-                    top: targetSection.offsetTop - 50, // Ajustement pour éviter la superposition avec la navbar
+                    top: targetSection.offsetTop - 50,
                     behavior: "smooth"
                 });
 
-                // Ferme le menu burger après un clic (pour l'expérience mobile)
+                // Ferme le menu mobile après un clic
                 navLinks.classList.remove("active");
                 menuToggle.classList.remove("active");
             }
         });
     });
 
-    // Déclencher l'animation de typing
-    heroTitle.style.width = heroTitle.scrollWidth + "px";
-
+    // Animation de révélation des sections
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const section = entry.target;
@@ -55,12 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 section.classList.add("reveal-active");
 
                 revealItems.forEach((el, index) => {
-                    el.style.animation = "none"; // reset
-                    el.offsetHeight; // force reflow
+                    el.style.animation = "none";
+                    el.offsetHeight;
                     el.style.animation = "fancyReveal 0.8s ease forwards";
                     el.style.animationDelay = `${index * 0.2}s`;
                 });
-
             } else {
                 section.classList.remove("reveal-active");
 
@@ -79,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         observer.observe(section);
     });
 
-    // Apparition champ par champ au scroll
+    // Apparition des champs de formulaire au scroll
     const inputObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -107,68 +103,94 @@ document.addEventListener("DOMContentLoaded", function () {
             ripple.remove();
         }, 600);
     });
-    const form = document.getElementById("contact-form");
-const message = document.getElementById("form-message");
 
-form.addEventListener("submit", async function (e) {
-    e.preventDefault(); // Empêche le rechargement de la page
+    // Gestion de la soumission du formulaire
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
 
-    const formData = new FormData(form);
+        const formData = new FormData(form);
 
-    try {
-        const response = await fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                form.reset();
+                message.style.display = "block";
+                message.textContent = "Message envoyé avec succès !";
+                message.style.color = "#4caf50";
+            } else {
+                message.style.display = "block";
+                message.textContent = "❌ Une erreur s’est produite. Veuillez réessayer.";
+                message.style.color = "#ff4444";
             }
-        });
-
-        if (response.ok) {
-            form.reset();
+        } catch (error) {
             message.style.display = "block";
-        } else {
-            message.style.display = "block";
-            message.textContent = "❌ Une erreur s’est produite. Veuillez réessayer.";
+            message.textContent = "❌ Erreur réseau. Vérifiez votre connexion.";
             message.style.color = "#ff4444";
         }
-    } catch (error) {
-        message.style.display = "block";
-        message.textContent = "❌ Erreur réseau. Vérifiez votre connexion.";
-        message.style.color = "#ff4444";
-    }
-});
-const skillCards = document.querySelectorAll(".skill-card");
-
-const skillObserver = new IntersectionObserver((entries) => {
-    // On trie les entrées par position dans la page pour garder l'effet de cascade cohérent
-    const visibleEntries = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => a.target.offsetTop - b.target.offsetTop);
-
-    visibleEntries.forEach((entry, index) => {
-        const card = entry.target;
-
-        // Réinitialise pour rejouer l'animation
-        card.style.animation = "none";
-        card.offsetHeight; // Force le reflow
-        card.style.animation = `fadeInUp 0.6s ease-in-out forwards`;
-        card.style.animationDelay = `${index * 0.1}s`;
     });
 
-    // Réinitialise les cartes non visibles
-    entries
-        .filter(entry => !entry.isIntersecting)
-        .forEach(entry => {
-            entry.target.style.opacity = 0;
-            entry.target.style.transform = "translateY(20px)";
+    // Animation des cartes de compétences
+    const skillObserver = new IntersectionObserver((entries) => {
+        const visibleEntries = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => a.target.offsetTop - b.target.offsetTop);
+
+        visibleEntries.forEach((entry, index) => {
+            const card = entry.target;
+            card.style.animation = "none";
+            card.offsetHeight;
+            card.style.animation = `fadeInUp 0.6s ease-in-out forwards`;
+            card.style.animationDelay = `${index * 0.1}s`;
         });
-}, {
-    threshold: 0.2
-});
 
-skillCards.forEach(card => {
-    skillObserver.observe(card);
-});
+        entries
+            .filter(entry => !entry.isIntersecting)
+            .forEach(entry => {
+                entry.target.style.opacity = 0;
+                entry.target.style.transform = "translateY(20px)";
+            });
+    }, {
+        threshold: 0.2
+    });
 
+    skillCards.forEach(card => {
+        skillObserver.observe(card);
+    });
+
+    // Initialisation des particules en arrière-plan
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 60, "density": { "enable": true, "value_area": 800 }},
+            "color": { "value": "#915eff" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 3, "random": false },
+            "size": { "value": 7, "random": true },
+            "line_linked": {
+                "enable": true,
+                "distance": 200,
+                "color": "#915eff",
+                "opacity": 0.4,
+                "width": 1.6
+            },
+            "move": { "enable": true, "speed": 2.5 }
+        },
+        "interactivity": {
+            "events": {
+                "onhover": { "enable": true, "mode": "repulse" },
+                "onclick": { "enable": true, "mode": "push" }
+            },
+            "modes": {
+                "repulse": { "distance": 100, "duration": 0.4 },
+                "push": { "particles_nb": 4 }
+            }
+        },
+        "retina_detect": true
+    });
 });

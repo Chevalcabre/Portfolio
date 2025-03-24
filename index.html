@@ -10,6 +10,7 @@
     <script defer src="assets/js/script.js"></script>
 </head>
 <body>
+
     <header>
         <nav class="navbar">
             <div class="logo-container">
@@ -32,11 +33,13 @@
     <br><br><br>
 
     <section id="home" class="section hero">
+        
         <div class="hero-container">
             <div class="hero-image">
                 <img src="assets/img/image0.jpeg" alt="Photo de profil">
             </div>
             <div class="hero-text">
+                <div id="particles-js"></div>
                 <h1 class="hero-title">Clément Moinard</h1>
                 <h2>Étudiant en BTS SIO - Développeur Web & Applications</h2>
                 <p>
@@ -265,6 +268,52 @@
             </div>
         </div>
     </section>
-
+    <footer class="footer">
+        <div class="footer-inner">
+          <div class="footer-section">
+            <h3 class="footer-logo">Clément Moinard</h3>
+            <p>Développeur Web • Étudiant BTS SIO SLAM</p>
+            <p class="footer-location"><i class="fas fa-map-marker-alt"></i> Le Puy-en-Velay, France</p>
+          </div>
+      
+          <div class="footer-section">
+            <h4>Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="#home">Accueil</a></li>
+              <li><a href="#about">À propos</a></li>
+              <li><a href="#competences">Compétences</a></li>
+              <li><a href="#projets">Projets</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Abonne-toi pour recevoir mes dernières actus ou projets !</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour ton inscription !');">
+              <input type="email" placeholder="Ton email" required>
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+      
+          <div class="footer-section">
+            <h4>Réseaux</h4>
+            <div class="footer-socials">
+              <a href="https://github.com/Chevalcabre" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/clément-moinard-3649072a0/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/clem.mrd_" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="mailto:clement.moinard43@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+        
+      
+        <div class="footer-bottom">
+          <p>© 2025 Clément Moinard — Tous droits réservés • <a href="#home">Mentions légales</a> • <a href="assets/CV_Clement_Moinard.pdf" download>Mon CV</a></p>
+        </div>
+      </footer>
+      
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
