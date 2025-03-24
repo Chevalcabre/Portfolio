@@ -138,5 +138,37 @@ form.addEventListener("submit", async function (e) {
         message.style.color = "#ff4444";
     }
 });
+const skillCards = document.querySelectorAll(".skill-card");
+
+const skillObserver = new IntersectionObserver((entries) => {
+    // On trie les entrées par position dans la page pour garder l'effet de cascade cohérent
+    const visibleEntries = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => a.target.offsetTop - b.target.offsetTop);
+
+    visibleEntries.forEach((entry, index) => {
+        const card = entry.target;
+
+        // Réinitialise pour rejouer l'animation
+        card.style.animation = "none";
+        card.offsetHeight; // Force le reflow
+        card.style.animation = `fadeInUp 0.6s ease-in-out forwards`;
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    // Réinitialise les cartes non visibles
+    entries
+        .filter(entry => !entry.isIntersecting)
+        .forEach(entry => {
+            entry.target.style.opacity = 0;
+            entry.target.style.transform = "translateY(20px)";
+        });
+}, {
+    threshold: 0.2
+});
+
+skillCards.forEach(card => {
+    skillObserver.observe(card);
+});
 
 });
