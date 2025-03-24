@@ -141,7 +141,7 @@ body {
 }
 
 .menu-toggle {
-    display: flex;
+    display: none; /* caché par défaut */
     align-items: center;
     justify-content: center;
     position: absolute;
