@@ -1270,12 +1270,6 @@ body {
     background: radial-gradient(circle at 20% 30%, #915eff33, transparent 60%),
                 radial-gradient(circle at 80% 80%, #6a3fcf22, transparent 60%);
     z-index: 0;
-    animation: moveLight 15s ease-in-out infinite alternate;
-}
-
-@keyframes moveLight {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-100px, 100px); }
 }
 
 .elite-inner {
