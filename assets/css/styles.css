@@ -51,7 +51,7 @@ body {
 }
 
 .logo-img {
-    width: 50px;
+    width: 80px;
     height: auto;
 }
 
@@ -274,7 +274,7 @@ body {
     animation: fadeIn 1.5s ease-in-out;
 }
 
-.btn-download {
+.btn-contact {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
@@ -288,12 +288,12 @@ body {
     animation: pulse 6s infinite;
 }
 
-.btn-download i {
+.btn-contact i {
     margin-left: 10px;
     font-size: 18px;
 }
 
-.btn-download:hover {
+.btn-contact:hover {
     transform: translateY(-4px);
     box-shadow: 0px 12px 20px rgba(145, 94, 255, 0.6);
 }
@@ -733,7 +733,7 @@ body {
     gap: 50px; 
     justify-items: center;
     align-items: center;
-    max-width: 1200px; 
+    max-width: 1300px; 
     margin: 0 auto;
     padding: 60px 20px; 
 }
@@ -1077,3 +1077,172 @@ body {
     padding: 20px;
 }
 
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    background: linear-gradient(135deg, #915eff, #6a3fcf);
+    padding: 12px 25px;
+    border-radius: 30px;
+    box-shadow: 0px 6px 15px rgba(145, 94, 255, 0.4);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    animation: pulse 6s infinite;
+}
+
+.btn-download i {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.btn-download:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 20px rgba(145, 94, 255, 0.6);
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.about-card {
+    background: rgba(27, 26, 45, 0.9);
+    padding: 30px 25px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(145, 94, 255, 0.25);
+    text-align: center;
+    max-width: 330px;
+    flex: 1 1 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(145, 94, 255, 0.4);
+}
+
+.about-icon {
+    font-size: 42px;
+    color: #915eff;
+    margin-bottom: 20px;
+}
+
+.about-card h3 {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.about-card p {
+    color: #ccc;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.timeline-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 80px auto 0;
+    flex-wrap: wrap;
+}
+.icon-timeline {
+    font-size: 24px;
+    color: #a27eff;
+    text-shadow: 0 0 10px rgba(145, 94, 255, 0.4);
+}
+.timeline-section {
+    flex: 1;
+    min-width: 320px;
+    background: linear-gradient(135deg, rgba(27,26,45,0.95), rgba(45,42,78,0.95));
+    padding: 35px 30px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(145, 94, 255, 0.25);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(145, 94, 255, 0.35);
+}
+
+.timeline-section h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timeline-list {
+    list-style: none;
+    padding: 0;
+    margin-left: 15px;
+    border-left: 3px solid #915eff44;
+    position: relative;
+}
+
+.timeline-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 28px;
+}
+
+.timeline-bullet {
+    position: absolute;
+    left: -10px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    background: #915eff;
+    border: 3px solid #1b1a2d;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(145, 94, 255, 0.5);
+    z-index: 1;
+}
+
+.timeline-list .year {
+    font-weight: 700;
+    font-size: 16px;
+    color: #b88dff;
+    margin-bottom: 6px;
+}
+
+.timeline-list p {
+    font-size: 16px;
+    color: #ddd;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Responsive pour timeline */
+@media (max-width: 768px) {
+    .timeline-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .timeline-section {
+        padding: 25px 20px;
+    }
+}
