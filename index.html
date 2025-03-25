@@ -217,8 +217,6 @@
                         <div class="progress-fill" style="width: 15%"></div>
                     </div>
                 </div>
-    
-                <!-- Frameworks -->
                 <div class="skill-card">
                     <img src="https://img.icons8.com/?size=100&id=jpa398oAm0WY&format=png&color=000000" alt="Symfony">
                     <span>Symfony</span>
@@ -233,8 +231,6 @@
                         <div class="progress-fill" style="width: 20%"></div>
                     </div>
                 </div>
-    
-                <!-- Bases de données -->
                 <div class="skill-card">
                     <img src="https://img.icons8.com/color/48/mysql-logo.png" alt="MySQL">
                     <span>MySQL</span>
@@ -348,9 +344,12 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
-        <div class="footer-inner">
-          <div class="footer-section">
+    <footer class="footer elite-footer">
+        <div class="footer-bg-animation"></div>
+      
+        <div class="footer-inner elite-inner">
+          <div class="footer-section elite-logo-section">
+            <img src="assets/img/Logo.png" alt="Logo Clément" class="footer-logo-img" />
             <h3 class="footer-logo">Clément Moinard</h3>
             <p>Développeur Web • Étudiant BTS SIO SLAM</p>
             <p class="footer-location"><i class="fas fa-map-marker-alt"></i> Le Puy-en-Velay, France</p>
@@ -368,16 +367,16 @@
           </div>
       
           <div class="footer-section">
-            <h4>Newsletter</h4>
-            <p>Abonne-toi pour recevoir mes dernières actus ou projets !</p>
-            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour ton inscription !');">
-              <input type="email" placeholder="Ton email" required>
+            <h4>Rejoins ma newsletter</h4>
+            <form class="newsletter-form elite-form" onsubmit="event.preventDefault(); alert('Merci pour ton inscription !');">
+              <input type="email" placeholder="Ton email ✉️" required />
               <button type="submit"><i class="fas fa-paper-plane"></i></button>
             </form>
+            <p class="footer-quote">✨ Sois au courant de mes projets avant tout le monde !</p>
           </div>
       
           <div class="footer-section">
-            <h4>Réseaux</h4>
+            <h4>Mes réseaux</h4>
             <div class="footer-socials">
               <a href="https://github.com/Chevalcabre" target="_blank"><i class="fab fa-github"></i></a>
               <a href="https://www.linkedin.com/in/clément-moinard-3649072a0/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -386,10 +385,16 @@
             </div>
           </div>
         </div>
-        <div class="footer-bottom">
-          <p>© 2025 Clément Moinard — Tous droits réservés • <a href="#home">Mentions légales</a> • <a href="assets/CV_Clement_Moinard.pdf" download>Mon CV</a></p>
+      
+        <div class="footer-bottom elite-bottom">
+          <p>
+            © <span id="year"></span> Clément Moinard — Tous droits réservés •
+            <a href="#home">Mentions légales</a> •
+            <a href="assets/CV_Clement_Moinard.pdf" download>Mon CV</a>
+          </p>
         </div>
       </footer>
+      
       
 </body>
 </html>

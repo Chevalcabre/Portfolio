@@ -193,5 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         "retina_detect": true
     });
-    
+    // Date auto dans le footer
+document.getElementById("year").textContent = new Date().getFullYear();
+
 });
