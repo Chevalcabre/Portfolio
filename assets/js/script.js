@@ -50,14 +50,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (entry.isIntersecting) {
                 section.classList.add("reveal-active");
-
-                revealItems.forEach((el, index) => {
-                    el.style.animation = "none";
-                    el.offsetHeight;
-                    el.style.animation = "fancyReveal 0.8s ease forwards";
-                    el.style.animationDelay = `${index * 0.2}s`;
-                });
-            } else {
+            
+                // Optimisation pour la section Projets : animations allégées
+                if (section.id === "projets") {
+                    revealItems.forEach(el => {
+                        el.style.opacity = 1;
+                        el.style.transform = "translateY(0)";
+                        el.style.animation = "none";
+                    });
+                } else {
+                    revealItems.forEach((el, index) => {
+                        el.style.animation = "none";
+                        el.offsetHeight;
+                        el.style.animation = "fancyReveal 0.8s ease forwards";
+                        el.style.animationDelay = `${index * 0.2}s`;
+                    });
+                }
+            }
+             else {
                 section.classList.remove("reveal-active");
 
                 revealItems.forEach(el => {
@@ -206,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
           images[index].classList.remove("active");
           index = (index + 1) % images.length;
           images[index].classList.add("active");
-        }, 4000);
+        }, 3000);
       });
       
   
