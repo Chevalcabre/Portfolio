@@ -1328,7 +1328,7 @@ body {
 }
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* ← AVANT : 450px */
     gap: 50px;
     padding: 0 40px;
     justify-content: center; /* ← Centre l’ensemble de la grille */
@@ -1524,7 +1524,9 @@ body {
     width: 16px;
     height: 16px;
   }
-
+  .carousel.contain {
+    height: 300px; /* diminue la hauteur des images en mobile */
+  }
   .project-techs img {
     width: 48px;
     height: 48px;
