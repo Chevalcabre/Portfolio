@@ -1326,3 +1326,215 @@ body {
 .footer-socials a:hover::before {
     width: 100%;
 }
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 50px;
+    padding: 0 40px;
+    justify-content: center; /* ← Centre l’ensemble de la grille */
+    max-width: 1760px;        /* ← Empêche que la grille s’étale trop */
+    margin: 0 auto;     
+  }
+  
+  @media screen and (min-width: 768px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 60px;
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 120px;
+    }
+  }
+
+  @media screen and (min-width: 1800px) {
+    .project-grid {
+      padding: 0 180px;
+      gap: 60px;
+    }
+  }
+  
+  .project-card {
+    max-width: 600px; /* ← Limite la largeur trop étendue sur écran géant */
+    margin: 0 auto;
+    background: linear-gradient(145deg, rgba(28, 27, 46, 0.95), rgba(49, 46, 83, 0.95));
+    border-radius: 30px;
+    box-shadow: 0 25px 60px rgba(145, 94, 255, 0.25);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 35px 80px rgba(145, 94, 255, 0.4);
+  }
+  
+  .carousel.contain {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    background: #0f0e1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .carousel.contain img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
+    background-color: #0f0e1a;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .carousel.contain img.active {
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .project-content {
+    padding: 25px 20px 30px; /* ↓ Espacement vertical réduit */
+    text-align: center;
+  }
+  
+  .project-content h3 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #c084fc, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 8px rgba(145, 94, 255, 0.3);
+    margin-bottom: 10px; /* ↓ Réduit */
+    letter-spacing: 0.5px;
+  }
+  
+
+.project-content p {
+  color: #d1cbe5;
+  font-size: 15.5px;
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 12px 0;
+  max-width: 100%;
+}
+  
+  
+  .project-techs {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  
+  .project-techs img {
+    width: 70px;
+    height: 70px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 10px #915eff88);
+  }
+  
+  .project-techs img:hover {
+    transform: scale(1.12);
+  }
+  .project-badge-center {
+    position: relative;
+    top: -10px;
+    margin-bottom: 10px;
+    background: rgba(145, 94, 255, 0.1);
+    border: 1px solid rgba(145, 94, 255, 0.4);
+    backdrop-filter: blur(8px);
+    color: #c084fc;
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 6px 12px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(145, 94, 255, 0.2);
+    animation: badgeFadeIn 1s ease forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
+    transform: translateY(8px);
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes badgeFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  .project-card {
+    position: relative;
+  }
+   /* === Responsive badge centré === */
+@media (max-width: 768px) {
+  .project-badge-center {
+    font-size: 12px;
+    padding: 5px 10px;
+    gap: 6px;
+    top: 0;
+  }
+
+  .project-badge-center img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .project-techs img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .project-content h3 {
+    font-size: 22px;
+  }
+
+  .project-content p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-badge-center {
+    font-size: 11px;
+    padding: 4px 8px;
+    gap: 5px;
+    top: 0;
+  }
+
+  .project-badge-center img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .project-techs img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .project-content h3 {
+    font-size: 20px;
+  }
+
+  .project-content p {
+    font-size: 13.5px;
+  }
+}

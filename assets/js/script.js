@@ -176,8 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 "enable": true,
                 "distance": 200,
                 "color": "#915eff",
-                "opacity": 0.4,
-                "width": 1.6
+                "opacity": 1,
+                "width": 2
             },
             "move": { "enable": true, "speed": 2.5 }
         },
@@ -194,6 +194,20 @@ document.addEventListener("DOMContentLoaded", function () {
         "retina_detect": true
     });
     // Date auto dans le footer
-document.getElementById("year").textContent = new Date().getFullYear();
-
+    document.querySelectorAll(".carousel").forEach(carousel => {
+        const images = carousel.querySelectorAll("img");
+        let index = 0;
+      
+        images.forEach((img, i) => {
+          img.classList.toggle('active', i === 0);
+        });
+      
+        setInterval(() => {
+          images[index].classList.remove("active");
+          index = (index + 1) % images.length;
+          images[index].classList.add("active");
+        }, 4000);
+      });
+      
+  
 });
