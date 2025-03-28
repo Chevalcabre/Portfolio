@@ -52,17 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 section.classList.add("reveal-active");
             
                 // Optimisation pour la section Projets : animations allégées
-                // Forcer l'affichage immédiat des projets
-const projetsSection = document.getElementById("projets");
-if (projetsSection) {
-    projetsSection.classList.add("reveal-active");
-    projetsSection.querySelectorAll('.reveal-item').forEach(el => {
-        el.style.opacity = 1;
-        el.style.transform = "translateY(0)";
-        el.style.animation = "none";
-    });
-}
-else {
+                if (section.id === "projets") {
+                    revealItems.forEach(el => {
+                        el.style.opacity = 1;
+                        el.style.transform = "translateY(0)";
+                        el.style.animation = "none";
+                    });
+                } else {
                     revealItems.forEach((el, index) => {
                         el.style.animation = "none";
                         el.offsetHeight;
