@@ -47,15 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
         entries.forEach(entry => {
             const section = entry.target;
             const revealItems = section.querySelectorAll(".reveal-item");
-
+    
             if (entry.isIntersecting) {
                 section.classList.add("reveal-active");
-            
-                // Optimisation pour la section Projets : animations allégées
+    
+                // ❌ Plus aucune animation pour la section Projets
                 if (section.id === "projets") {
                     revealItems.forEach(el => {
                         el.style.opacity = 1;
-                        el.style.transform = "translateY(0)";
+                        el.style.transform = "none";
                         el.style.animation = "none";
                     });
                 } else {
@@ -66,24 +66,26 @@ document.addEventListener("DOMContentLoaded", function () {
                         el.style.animationDelay = `${index * 0.2}s`;
                     });
                 }
-            }
-             else {
-                section.classList.remove("reveal-active");
-
-                revealItems.forEach(el => {
-                    el.style.animation = "none";
-                    el.style.opacity = 0;
-                    el.style.transform = "translateY(40px) rotateX(10deg) scale(0.95)";
-                });
+            } else {
+                // Pas de reset d’animation sur les projets non plus
+                if (section.id !== "projets") {
+                    section.classList.remove("reveal-active");
+                    revealItems.forEach(el => {
+                        el.style.animation = "none";
+                        el.style.opacity = 0;
+                        el.style.transform = "translateY(40px) rotateX(10deg) scale(0.95)";
+                    });
+                }
             }
         });
     }, {
         threshold: 0.15
     });
-
+    
     sections.forEach(section => {
         observer.observe(section);
     });
+    
 
     // Apparition des champs de formulaire au scroll
     const inputObserver = new IntersectionObserver((entries) => {
