@@ -1543,3 +1543,10 @@ font-size: 20px;
 font-size: 13.5px;
 }
 }
+@media (max-width: 768px) {
+    #projets .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
