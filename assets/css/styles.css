@@ -547,7 +547,7 @@ animation: blob 5.3s infinite alternate;
 .map-container {
 flex: 1;
 min-width: 300px;
-height: 830px;
+height: 818px;
 border-radius: 20px;
 overflow: hidden;
 box-shadow: 0 8px 20px rgba(145, 94, 255, 0.3);
